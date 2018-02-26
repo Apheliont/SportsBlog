@@ -1,0 +1,14 @@
+extends layout
+block content
+    .content-wrapper--md.main-content
+        h2.mb-4 #{title}
+        .list-group
+            each article in articles
+                a.list-group-item.list-group-item-action.flex-column.align-items-start.blog-post--index(href="/articles/show/" + article._id)
+                    .d-flex.w-100.justify-content-between
+                        h5.mb-1 #{article.title}
+                        small.text-muted #{moment(article.creationDate).format('DD/MM/YYYY HH:mm:ss')}
+                    p.mb-1 #{article.subtitle}
+                    .d-flex.flex-nowrap.justify-content-between
+                        small.text-muted #{article.author}
+                        small.text-muted #{article.category.title}

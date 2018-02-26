@@ -1,0 +1,41 @@
+extends layout
+block content
+    .main-content
+        .content-wrapper--md
+            .card
+                .card-header #{article.subtitle}
+                .card-body
+                    h4.card-title #{article.title}
+                    blockquote.blockquote.mb-0
+                        p #{article.description}
+                        footer.text-muted.clearfix
+                            small.m-0.float-left.font-italic #{article.author}
+                            small.m-0.float-right #{moment(article.creationDate).format('DD/MM/YYYY HH:mm:ss')}
+            .clearfix.m-0.p-0
+                button.btn.btn-outline-secondary.float-right.mt-4.back Назад
+        .content-wrapper--sm
+            h2 Оставить комментарий
+            form(action="/comments/add/" + article._id, method="POST")
+                .form-group
+                    label(for="subject") Тема
+                    input.form-control(type="text", name="subject", id="subject")
+                .form-group
+                    label(for="author") Автор
+                    input.form-control(type="text", name="author", id="author")
+                .form-group
+                    label(for="message") Сообщение
+                    textarea.form-control(name="message", id="message")
+                .clearfix.m-0.p-0
+                    button.btn.btn-outline-success.float-right(type="submit") Отправить
+            hr
+            h2 Комментарии
+            if article.comments
+                .list-group
+                    each comment in article.comments
+                        .list-group-item.list-group-item-action.flex-column.align-items-start
+                            .d-flex.w-100.justify-content-between
+                                h5.mb-1 #{comment.subject}
+                                small.text-muted #{moment(comment.creationDate).format('DD/MM/YYYY HH:mm:ss')}
+                            p.mb-1 #{comment.message}
+                            .d-flex.flex-nowrap.justify-content-between
+                                small.text-muted #{comment.author}

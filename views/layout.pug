@@ -1,0 +1,46 @@
+doctype html
+html
+    head
+        title #{title}
+        meta(charset="utf-8")
+        link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css", integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy", crossorigin="anonymous")
+        link(rel="stylesheet", href="/css/styles.css")
+    body
+        nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+            .content-wrapper.container
+                .navbar-brand СпортБлог
+                button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+                    span.navbar-toggler-icon
+                #navbarSupportedContent.collapse.navbar-collapse
+                    ul.navbar-nav.mr-auto
+                        li(class= title === 'Home' ? 'active' : undefined)
+                            a.nav-link(href='/')
+                                | Главная
+                                span.sr-only (current)
+                        li.nav-item(class= title === 'Articles' ? 'active' : undefined)
+                            a.nav-link(href='/articles') Статьи
+                        li.nav-item(class= title === 'Categories' ? 'active' : undefined)
+                            a.nav-link(href='/categories') Категории
+                    ul.navbar-nav
+                        li.nav-item.dropdown(class= title === 'Manage' ? 'active' : undefined)
+                            a.nav-link.dropdown-toggle(
+                            id="navbarDropdown",
+                            href='#',
+                            role="button",
+                            data-toggle="dropdown",
+                            aria-haspopup="true",
+                            aria-expanded="false"
+                            ) Управление
+                            .dropdown-menu(aria-labelledby="navbarDropdown")
+                                a.dropdown-item(href="/manage/articles") Статьи
+                                a.dropdown-item(href="/manage/categories") Категории
+
+        block content
+
+        footer.fixed-bottom.bg-light.footer.mt-4
+            .content-wrapper.container.d-flex.flex-row.flex-nowrap.justify-content-start.footer__container.align-items-center
+                p.m-0 СпортБлог &copy; 2017
+    script(src="https://code.jquery.com/jquery-3.2.1.slim.min.js",         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN", crossorigin="anonymous")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js", integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q", crossorigin="anonymous")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js", integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl", crossorigin="anonymous")
+    script(src="/js/script.js")

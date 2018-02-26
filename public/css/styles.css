@@ -1,0 +1,70 @@
+.main-content {
+    padding-top: 40px;
+    padding-bottom: 80px;
+}
+
+.content-wrapper {
+    max-width: 1680px;
+    margin: 0 auto;
+}
+
+.content-wrapper--sm {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.content-wrapper--md {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.home-splash {
+    position: relative;
+    background-blend-mode: screen;
+    background: url('../images/index_bg.jpg') center no-repeat, linear-gradient(45deg, #f8a261, #6e9fc9);
+    background-size: cover;
+    min-height: 400px;
+}
+
+.blog-post {
+    width: 300px;
+}
+
+.blog-post--index {
+    margin-bottom: 20px;
+}
+
+.blog-post__text {
+    min-height: 50px;
+    max-height: 220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.text-overflow-row {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.footer {
+    border-top: 1px solid rgb(216, 214, 216);
+    height: 55px;
+}
+
+.footer__container {
+    height: 100%;
+}
+
+.success {
+    list-style: none;
+    width: 30%;
+}
+
+.success > li {
+    background-color: #D6EDDA;
+    padding: 12px 20px;
+    margin: 16px 0;
+    border-radius: 5px;
+}
+

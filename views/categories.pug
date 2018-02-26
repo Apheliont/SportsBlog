@@ -1,0 +1,8 @@
+extends layout
+block content
+    .content-wrapper--md.main-content
+        h2.mb-4 #{title}
+        ul.list-group
+        each category in categories
+            li.list-group-item
+                a(href="/articles/category/" + category._id) #{category.title}

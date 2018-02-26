@@ -1,0 +1,16 @@
+extends ../../layout
+block content
+    .content-wrapper--sm.main-content
+        if errors
+            ul.list-group.mb-4
+                each error in errors.errors
+                    li.list-group-item.list-group-item-danger #{error}
+        form(method="POST" action="/manage/categories/edit/" + category._id)
+            .form-group
+                label(for="title") Заголовок
+                input.form-control#title(type="text", name="title" value=category.title)
+            .form-group
+                label(for="description") Описание
+                textarea.form-control#description(name="description", rows="4") #{category.description}
+            button.btn.btn-success.float-right(type="submit") Готово
+            a.btn.btn-outline-secondary.mr-4.float-right(href="/manage/categories") Назад

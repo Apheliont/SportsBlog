@@ -1,0 +1,14 @@
+extends ../../layout
+block content
+    .content-wrapper--sm.main-content
+        if errors
+            .alert.alert-danger #{errors.errors['title'].message}
+        form(method="POST" action="/manage/categories/add")
+            .form-group
+                label(for="title") Заголовок
+                input.form-control#title(type="text", name="title")
+            .form-group
+                label(for="description") Описание
+                textarea.form-control#description(name="description")
+            button.btn.btn-success.float-right(type="submit") Готово
+            a.btn.btn-outline-secondary.mr-4.float-right(href="/manage/categories") Назад

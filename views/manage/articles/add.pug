@@ -1,0 +1,27 @@
+extends ../../layout
+block content
+    .content-wrapper--sm.main-content
+        if errors
+             ul.list-group.mb-4
+                 each error in errors.errors
+                     li.list-group-item.list-group-item-danger #{error}
+        form(method="POST" action="/manage/articles/add")
+            .form-group
+                label(for="title") Заголовок
+                input.form-control#title(type="text", name="title")
+            .form-group
+                label(for="subtitle") Подзаголовок
+                input.form-control#subtitle(type="text", name="subtitle")
+            .form-group
+                label(for="author") Автор
+                input.form-control#author(type="text", name="author")
+            .form-group
+                label(for="category") Категория
+                select.form-control#category(name="category")
+                  each category in categories
+                    option(value= category._id) #{category.title}
+            .form-group
+                label(for="description") Описание
+                textarea.form-control#description(name="description", rows="5")
+            button.btn.btn-success.float-right(type="submit") Готово
+            a.btn.btn-outline-secondary.mr-4.float-right(href="/manage/articles") Назад

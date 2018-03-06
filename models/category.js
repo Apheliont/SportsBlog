@@ -4,9 +4,24 @@ const Schema = mongoose.Schema;
 const CategorySchema = new Schema({
     title: {
         type: String,
-        required: [true, 'Title field is required!']
+        required: [true, 'Введите заголовок']
     },
-    description: String
+    description: String,
+    numberOfArticles: {
+        type: Number,
+        default: 0
+    }
+});
+// Хук по удалению всех записей определенной категории после удаления самой категории
+CategorySchema.post('remove', async function(doc) {
+    const Article = mongoose.model('article');
+    try {
+        await Article.remove({
+            category: doc._id
+        });
+    } catch(e) {
+        console.log(e);
+    }
 });
 
 const Category = module.exports = mongoose.model('category', CategorySchema);
@@ -33,4 +48,15 @@ module.exports.updateCategory = function (id, body) {
         {
             runValidators: true
         });
+};
+
+module.exports.removeCategory = async function(id) {
+    try {
+        const category = await Category.findById(id);
+        await category.remove();
+    } catch(e) {
+        console.log(e);
+        return e;
+    }
+
 };

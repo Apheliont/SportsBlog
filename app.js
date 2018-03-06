@@ -8,7 +8,8 @@ const port = process.env.PORT || 3000;
 // database init
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-const url = 'mongodb://sportsblog:qwerty@ds161022.mlab.com:61022/sportsblog';
+// const url = 'mongodb://sportsblog:qwerty@ds161022.mlab.com:61022/sportsblog';
+const url = 'mongodb://localhost:27017/sportsblog';
 
 // routes init
 const index = require('./routes/index');

@@ -6,16 +6,17 @@ const Comment = require('./comment');
 const ArticleSchema = new Schema({
     title: {
         type: String,
-        required: [true, 'Title is required!']
+        required: [true, 'Введите заголовок']
     },
     subtitle: String,
     author: {
         type: String,
-        required: [true, 'Author is required!']
+        required: [true, 'Введите автора']
     },
     category: {
         type: Schema.Types.ObjectId,
         ref: 'category',
+        required: [true, 'Выберите категорию']
     },
     description: String,
     comments: [{
@@ -25,6 +26,34 @@ const ArticleSchema = new Schema({
     creationDate: {
         type: Date,
         default: Date.now
+    }
+});
+
+// Хук по увеличению счетчика статей в определенной категории после добавления новой статьи
+ArticleSchema.post('save', async function (doc) {
+    const Category = mongoose.model('category');
+    try {
+        await Category.findByIdAndUpdate(doc.category, {
+            $inc: {
+                numberOfArticles: 1
+            }
+        });
+    } catch (e) {
+        console.log(e);
+    }
+});
+
+// Хук по уменьшению счетчика статей в определенной категории после удаления новой статьи
+ArticleSchema.post('remove', async function (doc) {
+    const Category = mongoose.model('category');
+    try {
+        await Category.findByIdAndUpdate(doc.category, {
+            $inc: {
+                numberOfArticles: -1
+            }
+        });
+    } catch (e) {
+        console.log(e);
     }
 });
 
@@ -70,6 +99,16 @@ module.exports.getCategoryArticles = function (id) {
     });
 };
 
-module.exports.getArticle = function(id) {
+module.exports.getArticle = function (id) {
     return Article.findOne({_id: id}).populate('comments');
+};
+
+module.exports.removeArticle = async function (id) {
+    try {
+        const article = await Article.findById(id);
+        await article.remove();
+    } catch (e) {
+        console.log(e);
+        return e;
+    }
 };

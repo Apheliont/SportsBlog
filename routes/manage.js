@@ -35,7 +35,7 @@ router.post('/articles/add', async (req, res) => {
 
 router.delete('/articles/delete/:id', async (req, res) => {
     try {
-        await Article.findOneAndRemove({_id: req.params.id});
+        await Article.removeArticle(req.params.id);
         req.flash('success', 'Статья удалена');
         res.status(200).send('Article was successfully deleted');
     } catch (e) {
@@ -106,12 +106,13 @@ router.post('/categories/add', async (req, res) => {
 
 router.delete('/categories/delete/:id', async (req, res) => {
     try {
-        await Category.findOneAndRemove({_id: req.params.id});
-        req.flash('success', 'Категория удалена');
-        res.status(200).send('Category was successfully deleted');
+        await Category.removeCategory(req.params.id);
     } catch (e) {
         res.send(e);
     }
+    req.flash('success', 'Категория удалена');
+    res.status(200).send('Category was successfully deleted');
+
 });
 
 router.get('/categories/edit/:id', async (req, res) => {

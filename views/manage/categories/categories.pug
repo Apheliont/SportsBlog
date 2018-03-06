@@ -10,17 +10,19 @@ block content
                 thead
                     tr
                         th(scope="col") #
-                        th(scope="col") Title
-                        th(scope="col") Description
-                        th(scope="col") Delete
-                        th(scope="col") Edit
+                        th(scope="col") Заголовок
+                        th(scope="col") Описание
+                        th.text-center(scope="col") Кол-во статей
+                        th(scope="col")
+                        th(scope="col")
                 tbody
                     each category, index in categories
                         tr
                             th(scope="row") #{index + 1}
                             td #{category.title}
                             td #{category.description}
-                            td
-                                button.btn.btn-outline-danger.delete-category.mx-4(data-id=category._id) Delete
-                            td
-                                a.btn.btn-outline-warning(href="/manage/categories/edit/" + category._id) Edit
+                            td.text-center #{category.numberOfArticles}
+                            td.text-center
+                                button.btn.btn-outline-danger.delete-category.mx-4(data-id=category._id) Удалить
+                            td.text-center
+                                a.btn.btn-outline-warning(href="/manage/categories/edit/" + category._id) Редактировать

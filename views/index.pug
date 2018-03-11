@@ -16,3 +16,28 @@ block content
                     .d-flex.flex-nowrap.justify-content-between
                         small.text-muted #{article.author}
                         small.text-muted #{article.category.title}
+        - var articlesPerPage = 3
+        - var numberOfPages = Math.ceil(articlesNumber / articlesPerPage)
+    if numberOfPages > 1
+        nav.paginator
+            ul.pagination.justify-content-center
+                if pageNumber === 0
+                    li.page-item.disabled
+                        a.page-link(href="/") Назад
+                else
+                    li.page-item
+                        a.page-link(href="/page/" + (pageNumber - 1)) Назад
+                - var i = 0;
+                 while i < numberOfPages
+                     if pageNumber === i
+                         li.page-item.active
+                            a.page-link(href="/page/" + i)= ++i
+                     else
+                         li.page-item
+                             a.page-link(href="/page/" + i)= ++i
+                if pageNumber === numberOfPages - 1
+                    li.page-item.disabled
+                        a.page-link(href="#") Вперед
+                else
+                    li.page-item
+                        a.page-link(href="/page/" + (pageNumber + 1)) Вперед

@@ -6,4 +6,4 @@ block content
         each category in categories
             li.list-group-item.d-flex.justify-content-between.align-items-center
                 a(href="/articles/category/" + category._id) #{category.title}
-                span.badge.badge-info.badge-pill #{category.numberOfArticles}
+                span.badge.badge-primary.badge-pill #{category.numberOfArticles}

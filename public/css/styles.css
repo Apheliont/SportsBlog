@@ -47,6 +47,13 @@
     white-space: nowrap;
 }
 
+.paginator {
+    position: fixed;
+    bottom: 80px;
+    left: 0;
+    right: 0;
+}
+
 .footer {
     border-top: 1px solid rgb(216, 214, 216);
     height: 55px;
